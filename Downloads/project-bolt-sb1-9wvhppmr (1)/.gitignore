@@ -24,13 +24,13 @@ yarn-error.log*
 
 # local env files
 .env
-.env.*
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 .env.local.new
 .env.development
+# Vi behåller .env.example i git för att visa vilka variabler som krävs
 
 # vercel
 .vercel

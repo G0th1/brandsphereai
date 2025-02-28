@@ -44,4 +44,7 @@ next-env.d.ts
 
 # Project specific
 project/.next/
-project/node_modules/ 
+project/node_modules/
+
+# Lokal katalogstruktur
+/Downloads/ 

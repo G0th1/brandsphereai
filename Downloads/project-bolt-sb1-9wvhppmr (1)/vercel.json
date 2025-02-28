@@ -6,8 +6,14 @@
   "outputDirectory": ".next",
   "builds": [
     {
-      "src": "package.json",
+      "src": "./package.json",
       "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
     }
   ],
   "headers": [

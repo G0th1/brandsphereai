@@ -1,0 +1,14 @@
+# Ignorera lokala filer och kataloger som inte behövs för bygget
+Downloads/
+.git/
+.github/
+project/
+test-*.js
+test-*.ts
+*.log
+.env.local.new
+
+# Ignorer filer som enbart är för utvecklingsmiljön
+README.md
+.gitignore
+.vscode/ 

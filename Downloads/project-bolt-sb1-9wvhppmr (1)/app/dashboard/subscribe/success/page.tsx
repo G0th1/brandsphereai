@@ -57,12 +57,20 @@ export default function SubscriptionSuccessPage() {
           
           if (subscription.isActive && subscription.plan !== 'free') {
             setVerificationSuccess(true);
-            toast("Your Pro plan has been activated successfully.", "success");
+            toast({
+              title: "Aktiverad",
+              description: "Din Pro-prenumeration har aktiverats.",
+              variant: "default"
+            });
           } else {
             // If not active yet, we might need to wait for webhook to process
             // For better UX, we'll assume success if we have a session ID
             setVerificationSuccess(true);
-            toast("Your subscription is being processed.", "info");
+            toast({
+              title: "Bearbetas",
+              description: "Din prenumeration bearbetas för närvarande.",
+              variant: "default"
+            });
           }
         } catch (subError) {
           console.error('Error verifying subscription:', subError);

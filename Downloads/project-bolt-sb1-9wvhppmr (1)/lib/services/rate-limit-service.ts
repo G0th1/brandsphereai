@@ -1,48 +1,32 @@
 import { Ratelimit } from '@upstash/ratelimit'
 import { redis } from './redis-service'
 
-// Olika rate limits för olika endpoints
-const RATE_LIMITS = {
-  DEFAULT: {
-    requests: 100,
-    duration: '1 m', // per minut
-  },
-  YOUTUBE_API: {
-    requests: 50,
-    duration: '1 m',
-  },
-  FACEBOOK_API: {
-    requests: 50,
-    duration: '1 m',
-  },
-  AUTH: {
-    requests: 5,
-    duration: '1 m',
-  },
-}
+// Förenkla implementeringen för att få bygget att fungera
+// Hårdkoda värdena direkt i rateLimiters-objektet istället för att använda RATE_LIMITS
+// Detta undviker typfelet med Duration
 
 // Skapa rate limiters för olika endpoints
 const rateLimiters = {
   default: new Ratelimit({
     redis,
-    limiter: Ratelimit.slidingWindow(RATE_LIMITS.DEFAULT.requests, RATE_LIMITS.DEFAULT.duration),
+    limiter: Ratelimit.slidingWindow(100, '1 m'),
     analytics: true,
   }),
   youtubeApi: new Ratelimit({
     redis,
-    limiter: Ratelimit.slidingWindow(RATE_LIMITS.YOUTUBE_API.requests, RATE_LIMITS.YOUTUBE_API.duration),
+    limiter: Ratelimit.slidingWindow(50, '1 m'),
     analytics: true,
     prefix: 'ratelimit:youtube',
   }),
   facebookApi: new Ratelimit({
     redis,
-    limiter: Ratelimit.slidingWindow(RATE_LIMITS.FACEBOOK_API.requests, RATE_LIMITS.FACEBOOK_API.duration),
+    limiter: Ratelimit.slidingWindow(50, '1 m'),
     analytics: true,
     prefix: 'ratelimit:facebook',
   }),
   auth: new Ratelimit({
     redis,
-    limiter: Ratelimit.slidingWindow(RATE_LIMITS.AUTH.requests, RATE_LIMITS.AUTH.duration),
+    limiter: Ratelimit.slidingWindow(5, '1 m'),
     analytics: true,
     prefix: 'ratelimit:auth',
   }),

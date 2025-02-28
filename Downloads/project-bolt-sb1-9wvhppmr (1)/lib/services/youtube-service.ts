@@ -1,6 +1,15 @@
 import { TokenService } from './token-service'
-import { platformService } from './platform-service'
+// Kommentera bort import från saknad fil
+// import { platformService } from './platform-service'
 import { getCachedData, CACHE_KEYS, CACHE_TTL } from './redis-service'
+
+// Skapa en enkel stub för att ersätta den saknade platform-service
+export const platformService = {
+  getPlatformData: async (userId: string, platform: string) => {
+    // Dummy-implementation, ersätt med faktisk logik i produktion
+    return null;
+  }
+};
 
 export type YouTubeChannel = {
   id: string
@@ -20,6 +29,12 @@ export type YouTubeVideo = {
   viewCount: number
   likeCount: number
   commentCount: number
+}
+
+interface VideoStats {
+  viewCount?: string;
+  likeCount?: string;
+  commentCount?: string;
 }
 
 export class YouTubeService {
@@ -99,9 +114,15 @@ export class YouTubeService {
         }
 
         const statsData = await statsResponse.json()
-        const statsMap = new Map(
-          statsData.items.map((item: any) => [item.id, item.statistics])
-        )
+        const statsMap = new Map<string, VideoStats>()
+
+        statsData.items.forEach((item: any) => {
+          statsMap.set(item.id, {
+            viewCount: item.statistics.viewCount,
+            likeCount: item.statistics.likeCount,
+            commentCount: item.statistics.commentCount
+          })
+        })
 
         return data.items.map((item: any) => ({
           id: item.id.videoId,

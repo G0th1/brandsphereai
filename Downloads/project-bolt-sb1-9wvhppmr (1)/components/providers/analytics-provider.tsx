@@ -1,6 +1,6 @@
 'use client'
 
-import { PlausibleProvider } from 'next-plausible'
+import Plausible from 'next-plausible'
 
 export function AnalyticsProvider({
   children,
@@ -13,12 +13,12 @@ export function AnalyticsProvider({
     : 'localhost:3000'
 
   return (
-    <PlausibleProvider 
+    <Plausible 
       domain={domain}
       trackOutboundLinks
       enabled={process.env.NODE_ENV === 'production'}
     >
       {children}
-    </PlausibleProvider>
+    </Plausible>
   )
 } 

@@ -47,7 +47,7 @@ export class EnhancedRedisService {
   static async get<T>(key: string): Promise<T | null> {
     try {
       const value = await redis.get(key)
-      return value ? JSON.parse(value) : null
+      return value ? JSON.parse(value.toString()) : null
     } catch (error) {
       console.error('Redis GET error:', error)
       return null

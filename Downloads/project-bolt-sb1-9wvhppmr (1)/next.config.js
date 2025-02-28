@@ -7,7 +7,6 @@ const nextConfig = {
     unoptimized: true
   },
   experimental: {
-    serverActions: true,
     serverComponentsExternalPackages: ['@prisma/client']
   },
   async headers() {

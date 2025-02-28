@@ -53,7 +53,11 @@ export default function SubscribePage() {
   
   const handleSubscribe = async (priceId: string) => {
     if (!user) {
-      toast("Please sign in before subscribing.", "error");
+      toast({
+        title: "Please sign in",
+        description: "Please sign in before subscribing.",
+        variant: "destructive"
+      });
       return;
     }
     
@@ -77,7 +81,11 @@ export default function SubscribePage() {
       }
     } catch (error) {
       console.error('Error creating checkout session:', error);
-      toast("Unable to create a payment session. Please try again later.", "error");
+      toast({
+        title: "Error",
+        description: "Unable to create a payment session. Please try again later.",
+        variant: "destructive"
+      });
     } finally {
       setLoading(false);
     }
@@ -100,7 +108,11 @@ export default function SubscribePage() {
       }
     } catch (error) {
       console.error('Error creating customer portal link:', error);
-      toast("Unable to open subscription management. Please try again later.", "error");
+      toast({
+        title: "Error",
+        description: "Unable to open subscription management. Please try again later.",
+        variant: "destructive"
+      });
     } finally {
       setLoading(false);
     }

@@ -11,38 +11,40 @@ import { Label } from '@/components/ui/label'
 import { useToast } from '@/components/ui/use-toast'
 import { ChevronLeft, Check, CreditCard, Lock, Loader2 } from 'lucide-react'
 
-// MVP: Simulated payment plans
-const plans = {
+// Deklarera plans-objektet med korrekt typning
+interface Plan {
+  name: string;
+  description: string;
+  price: number;
+  priceId: string;
+  features: string[];
+  period: string;
+}
+
+const plans: Record<string, Plan> = {
+  basic: {
+    name: 'Basic',
+    description: 'För personligt bruk',
+    price: 99,
+    priceId: 'price_basic',
+    features: ['3 sociala konton', 'Schemaläggning', 'Analys av grundläggande statistik'],
+    period: 'kr/månad'
+  },
   pro: {
     name: 'Pro',
-    price: '$19',
-    period: '/month',
-    description: 'For content creators who want to grow',
-    features: [
-      'Manage up to 10 social media accounts',
-      'Advanced statistics and insights',
-      'AI-generated content suggestions',
-      'Unlimited posts',
-      'Post scheduling',
-      'Priority support',
-    ],
-    priceId: 'price_pro_monthly_199',
+    description: 'För professionella och småföretag',
+    price: 249,
+    priceId: 'price_pro',
+    features: ['10 sociala konton', 'Avancerad schemaläggning', 'Omfattande analys', 'Prioriterad support'],
+    period: 'kr/månad'
   },
   enterprise: {
     name: 'Enterprise',
-    price: 'Contact us',
-    period: '',
-    description: 'For teams and larger organizations',
-    features: [
-      'Unlimited social media accounts',
-      'Complete statistics and analysis',
-      'AI-optimized content strategy',
-      'Integration with marketing tools',
-      'Team collaboration',
-      'Dedicated account manager',
-      'API access',
-    ],
+    description: 'För stora företag',
+    price: 0,
     priceId: 'contact_sales',
+    features: ['Obegränsade konton', 'Dedikerad support', 'Anpassade funktioner', 'API-tillgång'],
+    period: ''
   }
 }
 

@@ -2,8 +2,8 @@
  * Förenklat test-skript för Stripe-integration
  */
 
-// För att ladda miljövariabler från .env.local
-require('dotenv').config({ path: '.env.local' });
+// För att ladda miljövariabler från .
+require('dotenv').config({ path: '.' });
 
 // Logga värden för att verifiera att miljövariabler laddas korrekt
 console.log('🧪 BASIC TEST - KONTROLLERAR MILJÖVARIABLER:');

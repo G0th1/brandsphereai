@@ -11,12 +11,12 @@ export function useAnalytics() {
 
   const trackEvent = (event: AnalyticsEvent) => {
     const eventName = `${event.type}_${('action' in event ? event.action : 'call')}`
-    const props = { ...event }
-    delete props.type
-    delete props.action
+    
+    // Använd rest operator för att extrahera type och action, och spara resten i propsObj
+    const { type, action, ...propsObj } = event as any;
     
     plausible(eventName, {
-      props
+      props: propsObj
     })
   }
 

@@ -43,6 +43,7 @@ next-env.d.ts
 .vercel/
 
 # Project specific
+project/
 project/.next/
 project/node_modules/
 

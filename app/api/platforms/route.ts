@@ -4,6 +4,9 @@ import { youtubeService } from '@/lib/services/youtube-service'
 import { facebookService } from '@/lib/services/facebook-service'
 import { getUser } from '@/lib/auth'
 
+// Konfigurera rutten som dynamisk
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     const user = await getUser()

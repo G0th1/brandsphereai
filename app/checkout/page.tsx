@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
@@ -46,7 +46,8 @@ const plans = {
   }
 }
 
-export default function CheckoutPage() {
+// Komponenten som använder useSearchParams
+function CheckoutContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const { toast } = useToast()
@@ -248,21 +249,33 @@ export default function CheckoutPage() {
                 </CardContent>
                 <CardFooter className="bg-muted/30 px-6 py-4">
                   <div className="text-sm text-muted-foreground space-y-2">
-                    <p>14 dagars pengarna-tillbaka-garanti</p>
-                    <p>Fullständig tillgång till alla Pro-funktioner</p>
+                    <p>Prenumerationen förnyas automatiskt. Du kan avsluta när som helst.</p>
+                    <p>Genom att fortsätta godkänner du våra användarvillkor och integritetspolicy.</p>
                   </div>
                 </CardFooter>
               </Card>
-              
-              <div className="mt-4 text-sm text-muted-foreground text-center space-y-2">
-                <p>Har du frågor? <a href="/contact" className="text-primary underline">Kontakta oss</a></p>
-                <p>Genom att slutföra detta köp godkänner du våra <a href="/terms" className="text-primary underline">användarvillkor</a>.</p>
-              </div>
             </div>
           </div>
         </div>
       </main>
       <Footer />
     </div>
+  )
+}
+
+// Huvudkomponenten som wrappar innehållet i en Suspense-gräns
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-screen flex-col">
+        <Navbar />
+        <div className="flex-1 container mx-auto p-6 flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+        <Footer />
+      </div>
+    }>
+      <CheckoutContent />
+    </Suspense>
   )
 } 

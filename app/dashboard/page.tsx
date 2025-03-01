@@ -9,12 +9,20 @@ import { Plus, Chrome, Facebook, Twitter, Linkedin, Instagram, Info, BarChart2, 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { contentService, ScheduledPost } from '../../services/content-service'
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { AIAssistant } from "@/components/ai-assistant"
+import { onboardingService, BrandStrategy } from "@/services/onboarding-service"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Loader2, PenTool, Lightbulb } from "lucide-react"
 
 export default function DashboardPage() {
   const router = useRouter();
+  const supabase = createClientComponentClient();
   const [connectedAccounts, setConnectedAccounts] = useState<string[]>([]);
   const [scheduledPosts, setScheduledPosts] = useState<ScheduledPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<{ id: string; email: string } | null>(null);
+  const [brandStrategy, setBrandStrategy] = useState<BrandStrategy | null>(null);
   
   // Funktion för att ansluta ett konto (i en riktig implementation skulle detta använda API:er)
   const connectAccount = (platform: string) => {
@@ -25,21 +33,73 @@ export default function DashboardPage() {
     }
   };
   
-  // Hämta schemalagda inlägg från Supabase
+  // Hämta användardata och strategi vid sidladdning
   useEffect(() => {
-    const fetchScheduledPosts = async () => {
+    const getUser = async () => {
+      setLoading(true);
+      
       try {
-        const posts = await contentService.getScheduledPosts();
-        setScheduledPosts(posts);
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (!session) {
+          router.push("/login");
+          return;
+        }
+        
+        // Sätt användardata
+        setUser({
+          id: session.user.id,
+          email: session.user.email || ""
+        });
+        
+        // Hämta användarens varumärkesstrategi
+        if (session.user.id) {
+          const strategy = await onboardingService.getBrandStrategy(session.user.id);
+          setBrandStrategy(strategy);
+          
+          // Om användaren inte har någon strategi, omdirigera till onboarding
+          if (!strategy && window.location.pathname === "/dashboard") {
+            router.push("/onboarding");
+            return;
+          }
+        }
+        
+        // Hämta schemalagda inlägg
+        const { data: posts, error: postsError } = await supabase
+          .from("scheduled_posts")
+          .select("*")
+          .eq("user_id", session.user.id)
+          .order("scheduled_time", { ascending: true })
+          .limit(5);
+        
+        if (postsError) throw postsError;
+        setScheduledPosts(posts || []);
+        
+        // Hämta anslutna konton
+        const { data: accounts, error: accountsError } = await supabase
+          .from("platform_connections")
+          .select("*")
+          .eq("user_id", session.user.id);
+        
+        if (accountsError) throw accountsError;
+        setConnectedAccounts(accounts || []);
       } catch (error) {
-        console.error('Fel vid hämtning av schemalagda inlägg:', error);
+        console.error("Error loading dashboard data:", error);
       } finally {
         setLoading(false);
       }
     };
     
-    fetchScheduledPosts();
+    getUser();
   }, []);
+  
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-[calc(100vh-4rem)]">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
+  }
   
   return (
     <div className="flex min-h-screen flex-col">
@@ -47,9 +107,9 @@ export default function DashboardPage() {
       <main className="flex-1 container mx-auto p-6">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold">Välkommen till BrandSphereAI!</h1>
+            <h1 className="text-3xl font-bold">Välkommen tillbaka{user?.email ? `, ${user.email.split('@')[0]}` : ''}!</h1>
             <p className="text-muted-foreground mt-1">
-              Din plattform för att skapa och hantera sociala medier-innehåll med AI-stöd.
+              Hantera ditt personliga varumärke och skapa engagerande innehåll
             </p>
           </div>
           <Button onClick={() => router.push('/dashboard/create')}>

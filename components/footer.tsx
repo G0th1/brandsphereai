@@ -10,25 +10,25 @@ export function Footer() {
               BrandSphereAI
             </Link>
             <p className="mt-2 text-sm text-muted-foreground">
-              Din intelligenta plattform för innehållshantering på sociala medier
+              Your intelligent platform for social media content management
             </p>
           </div>
           <div>
-            <h3 className="font-semibold mb-3">Produkt</h3>
+            <h3 className="font-semibold mb-3">Product</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/pricing" className="text-sm text-muted-foreground hover:text-foreground">
-                  Priser
+                  Pricing
                 </Link>
               </li>
               <li>
                 <Link href="/features" className="text-sm text-muted-foreground hover:text-foreground">
-                  Funktioner
+                  Features
                 </Link>
               </li>
               <li>
                 <Link href="/integrations" className="text-sm text-muted-foreground hover:text-foreground">
-                  Integrationer
+                  Integrations
                 </Link>
               </li>
             </ul>
@@ -38,32 +38,32 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="/help" className="text-sm text-muted-foreground hover:text-foreground">
-                  Hjälpcenter
+                  Help Center
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground">
-                  Kontakta oss
+                  Contact Us
                 </Link>
               </li>
               <li>
                 <Link href="/faq" className="text-sm text-muted-foreground hover:text-foreground">
-                  Vanliga frågor
+                  FAQ
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold mb-3">Konto</h3>
+            <h3 className="font-semibold mb-3">Account</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/login" className="text-sm text-muted-foreground hover:text-foreground">
-                  Logga in
+                  Log in
                 </Link>
               </li>
               <li>
                 <Link href="/signup" className="text-sm text-muted-foreground hover:text-foreground">
-                  Skapa konto
+                  Sign up
                 </Link>
               </li>
             </ul>
@@ -71,14 +71,14 @@ export function Footer() {
         </div>
         <div className="mt-8 pt-8 border-t flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} BrandSphereAI. Alla rättigheter förbehållna.
+            &copy; {new Date().getFullYear()} BrandSphereAI. All rights reserved.
           </p>
           <div className="flex items-center space-x-4 mt-4 md:mt-0">
             <Link href="/terms" className="text-xs text-muted-foreground hover:text-foreground">
-              Användarvillkor
+              Terms of Service
             </Link>
             <Link href="/privacy" className="text-xs text-muted-foreground hover:text-foreground">
-              Integritetspolicy
+              Privacy Policy
             </Link>
             <Link href="/gdpr" className="text-xs text-muted-foreground hover:text-foreground">
               GDPR

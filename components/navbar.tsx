@@ -26,7 +26,7 @@ export function Navbar() {
               isActive('/') ? 'text-foreground' : 'text-muted-foreground'
             }`}
           >
-            Hem
+            Home
           </Link>
           <Link 
             href="/features" 
@@ -34,7 +34,7 @@ export function Navbar() {
               isActive('/features') ? 'text-foreground' : 'text-muted-foreground'
             }`}
           >
-            Funktioner
+            Features
           </Link>
           <Link 
             href="/pricing" 
@@ -42,17 +42,17 @@ export function Navbar() {
               isActive('/pricing') ? 'text-foreground' : 'text-muted-foreground'
             }`}
           >
-            Priser
+            Pricing
           </Link>
         </nav>
         
         <div className="flex items-center gap-2">
           <Link href="/login">
-            <Button variant="ghost">Logga in</Button>
+            <Button variant="ghost">Log in</Button>
           </Link>
           <Link href="/signup">
             <Button className="bg-primary hover:bg-primary/90 text-white">
-              Skapa konto
+              Sign up
             </Button>
           </Link>
         </div>

@@ -8,53 +8,53 @@ import { useRouter } from 'next/navigation'
 
 const pricingPlans = [
   {
-    name: 'Gratis',
-    price: '0 kr',
-    description: 'För hobbykreatörer och nybörjare',
+    name: 'Free',
+    price: '$0',
+    description: 'For hobby creators and beginners',
     features: [
-      'Hantera upp till 3 sociala mediekonton',
-      'Grundläggande statistik och insikter',
-      'Manuell innehållsskapande',
-      'Upp till 10 inlägg per månad',
+      'Manage up to 3 social media accounts',
+      'Basic statistics and insights',
+      'Manual content creation',
+      'Up to 10 posts per month',
       'Email support',
     ],
-    cta: 'Kom igång gratis',
+    cta: 'Get started for free',
     href: '/signup',
     highlighted: false,
   },
   {
     name: 'Pro',
-    price: '199 kr',
-    period: '/månad',
-    description: 'För innehållsskapare som vill växa',
+    price: '$19',
+    period: '/month',
+    description: 'For content creators looking to grow',
     features: [
-      'Hantera upp till 10 sociala mediekonton',
-      'Avancerad statistik och insikter',
-      'AI-genererat innehållsförslag',
-      'Obegränsat antal inlägg',
-      'Schemaläggning av inlägg',
-      'Prioriterad support',
+      'Manage up to 10 social media accounts',
+      'Advanced analytics and insights',
+      'AI-generated content suggestions',
+      'Unlimited posts',
+      'Post scheduling',
+      'Priority support',
     ],
-    cta: 'Börja 14 dagars gratis provperiod',
+    cta: 'Start 14-day free trial',
     href: '/checkout?plan=pro',
     highlighted: true,
-    special: 'MVP lanseringspris - 50% rabatt!',
-    originalPrice: '399 kr',
+    special: 'MVP launch price - 50% off!',
+    originalPrice: '$39',
   },
   {
-    name: 'Företag',
-    price: 'Kontakta oss',
-    description: 'För team och större organisationer',
+    name: 'Enterprise',
+    price: 'Contact us',
+    description: 'For teams and larger organizations',
     features: [
-      'Obegränsat antal sociala mediekonton',
-      'Fullständig statistik och analys',
-      'AI-optimerad innehållsstrategi',
-      'Integration med marknadsföringsverktyg',
-      'Team-samarbete',
-      'Dedikerad kontaktperson',
-      'API-åtkomst',
+      'Unlimited social media accounts',
+      'Complete analytics and reporting',
+      'AI-optimized content strategy',
+      'Marketing tool integrations',
+      'Team collaboration',
+      'Dedicated account manager',
+      'API access',
     ],
-    cta: 'Kontakta oss',
+    cta: 'Contact us',
     href: '/checkout?plan=enterprise',
     highlighted: false,
   },
@@ -68,10 +68,10 @@ export default function PricingPage() {
       <div className="py-24 px-6 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-            Prissättning
+            Pricing
           </h1>
           <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Välj en plan som passar dina behov. Alla planer inkluderar gratis uppgradering till nästa version.
+            Choose a plan that fits your needs. All plans include free upgrades to the next version.
           </p>
           
           {/* MVP Banner */}
@@ -79,7 +79,7 @@ export default function PricingPage() {
             <CardContent className="flex items-center gap-3 p-4">
               <Info className="h-5 w-5 text-primary flex-shrink-0" />
               <p className="text-sm">
-                <strong>MVP-erbjudande:</strong> Under vår testperiod erbjuder vi specialpriser för early adopters. Hjälp oss förbättra produkten och få livstids rabatt!
+                <strong>MVP Offer:</strong> During our testing period, we're offering special pricing for early adopters. Help us improve the product and get a lifetime discount!
               </p>
             </CardContent>
           </Card>
@@ -97,7 +97,7 @@ export default function PricingPage() {
             >
               <h2 className="text-lg font-semibold leading-8">{plan.name}</h2>
               
-              {/* Lägg till MVP specialerbjudande */}
+              {/* Add MVP special offer */}
               {plan.special && (
                 <div className={`mt-2 inline-block px-2 py-1 text-xs font-medium rounded-md ${plan.highlighted ? 'bg-white/20 text-white' : 'bg-primary/10 text-primary'}`}>
                   {plan.special}
@@ -119,10 +119,10 @@ export default function PricingPage() {
                 )}
               </p>
               
-              {/* Visa originalpris om det finns */}
+              {/* Show original price if available */}
               {plan.originalPrice && (
                 <p className={`text-sm ${plan.highlighted ? 'text-primary-foreground/70' : 'text-muted-foreground'} line-through mt-1`}>
-                  Ordinarie: {plan.originalPrice}{plan.period}
+                  Regular: {plan.originalPrice}{plan.period}
                 </p>
               )}
               
@@ -162,10 +162,10 @@ export default function PricingPage() {
         
         <div className="mx-auto max-w-2xl text-center mt-20">
           <h2 className="text-3xl font-bold tracking-tight">
-            Osäker på vilken plan som passar dig?
+            Not sure which plan is right for you?
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Boka en gratis produktdemo och få råd från vårt team.
+            Book a free product demo and get advice from our team.
           </p>
           <div className="mt-6">
             <Button 
@@ -173,7 +173,7 @@ export default function PricingPage() {
               className="mx-auto"
               onClick={() => router.push('/contact')}
             >
-              Boka demo
+              Book a demo
             </Button>
           </div>
         </div>

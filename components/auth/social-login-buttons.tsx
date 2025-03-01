@@ -38,8 +38,8 @@ export function SocialLoginButtons() {
       await signInWithProvider(provider as 'google' | 'facebook')
     } catch (error) {
       toast({
-        title: 'Inloggning misslyckades',
-        description: 'Ett fel uppstod vid inloggning. Försök igen.',
+        title: 'Login failed',
+        description: 'An error occurred during login. Please try again.',
         variant: 'destructive',
       })
     } finally {
@@ -51,7 +51,7 @@ export function SocialLoginButtons() {
     <div className="space-y-3">
       <div className="relative flex justify-center text-xs uppercase">
         <span className="bg-background px-2 text-muted-foreground">
-          Eller fortsätt med
+          Or continue with
         </span>
       </div>
 
@@ -73,7 +73,7 @@ export function SocialLoginButtons() {
               ) : (
                 <Icon className="mr-2 h-4 w-4" />
               )}
-              {`Fortsätt med ${provider.displayName}`}
+              {`Continue with ${provider.displayName}`}
             </Button>
           )
         })}

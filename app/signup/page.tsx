@@ -16,31 +16,31 @@ export default function SignupPage() {
         <div className="w-full max-w-md">
           <div className="flex flex-col items-center space-y-2 mb-8">
             <BrainCircuit className="h-10 w-10 text-orange-500" />
-            <h1 className="text-2xl font-bold">Skapa ditt BrandAI-konto</h1>
+            <h1 className="text-2xl font-bold">Create your BrandAI account</h1>
             <p className="text-muted-foreground text-center">
-              Börja hantera ditt personliga varumärke med AI
+              Start managing your personal brand with AI
             </p>
           </div>
           
           <div className="bg-card p-6 rounded-lg border shadow-sm">
             <form className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">E-post</Label>
+                <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="namn@exempel.se"
+                  placeholder="name@example.com"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Lösenord</Label>
+                <Label htmlFor="password">Password</Label>
                 <Input 
                   id="password"
                   type="password"
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Bekräfta lösenord</Label>
+                <Label htmlFor="confirmPassword">Confirm password</Label>
                 <Input 
                   id="confirmPassword"
                   type="password"
@@ -50,14 +50,14 @@ export default function SignupPage() {
                 type="submit" 
                 className="w-full bg-blue-900 hover:bg-blue-800"
               >
-                Registrera
+                Sign up
               </Button>
             </form>
             
             <div className="mt-6 text-center text-sm">
-              Har du redan ett konto?{" "}
+              Already have an account?{" "}
               <Link href="/login" className="text-blue-600 hover:text-blue-800 font-medium">
-                Logga in
+                Log in
               </Link>
             </div>
           </div>

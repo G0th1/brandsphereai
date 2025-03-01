@@ -1,12 +1,12 @@
 {
     "version":  2,
-    "buildCommand":  "cd project && NEXT_IGNORE_TYPE_ERRORS=true npm run build",
-    "installCommand":  "cd project && npm install",
+    "buildCommand":  "NEXT_IGNORE_TYPE_ERRORS=true npm run build",
+    "installCommand":  "npm install",
     "framework":  "nextjs",
-    "outputDirectory":  "project/.next",
+    "outputDirectory":  ".next",
     "builds":  [
                    {
-                       "src":  "project/package.json",
+                       "src":  "package.json",
                        "use":  "@vercel/next"
                    }
                ],
